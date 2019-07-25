@@ -28,11 +28,9 @@ export class FreshitorComponent implements OnInit {
     this.autosize(textArea, textDisplay);
 
     const source = textArea.value;
-    console.log('lineNumber', this.getLineNumber(textArea));
 
     const textLines = source.split(NEW_LINE_CHARACTER);
     const maxLengthIndex = this.getMaxLengthIndex(textLines);
-    console.log('maxLengthIndex', maxLengthIndex);
     const maxLengthText = this.getTextAt(textLines, maxLengthIndex);
     this.source = maxLengthText;
   }
@@ -47,7 +45,6 @@ export class FreshitorComponent implements OnInit {
 
     if (textDisplay) {
       width = textDisplay.offsetWidth + 100;
-      console.log('width', width);
     }
 
     // reset min-width
@@ -66,7 +63,6 @@ export class FreshitorComponent implements OnInit {
       // for box-sizing other than "content-box" use:
       // el.style.cssText = '-moz-box-sizing:content-box';
       const cssText = 'height:' + textArea.scrollHeight + 'px; width:' + width + 'px;';
-      console.log('cssText', cssText);
       textArea.style.cssText = cssText;
     }, 0);
   }
