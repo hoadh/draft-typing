@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, HostListener } from '@angular/core';
 const NEW_LINE_CHARACTER = '\n';
 
 @Component({
@@ -14,6 +14,11 @@ export class FreshitorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.textElement.nativeElement.focus();
+  }
+
+  @HostListener('window:click', ['$event.target'])
+  onClick(target) {
     this.textElement.nativeElement.focus();
   }
 
