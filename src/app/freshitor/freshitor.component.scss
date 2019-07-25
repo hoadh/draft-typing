@@ -1,7 +1,20 @@
+div.main, div.center-block {
+  height: 100%;
+}
+
+div.main {
+  display: table;
+  margin: auto;
+}
+
+div.main div.center-block {
+  display: table-cell;
+  vertical-align: middle;
+}
 
 textarea {
   font-family: 'DejaVu Sans Mono', monospace;
-  font-size: 1em;
+  font-size: 1.2em;
   width: 100%;
   border: 0px;
   outline: none;
@@ -10,6 +23,6 @@ textarea {
 }
 
 #textDisplay {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'DejaVu Sans Mono', monospace;
   font-size: 1.2em;
 }

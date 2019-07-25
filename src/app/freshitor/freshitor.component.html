@@ -1,3 +1,7 @@
-<span id="textDisplay" #textDisplay style="position: fixed; top:-200px;">{{source}}</span>
-<!-- <textarea #textSource wrap="on" (keydown)="onTextChange()" (mouseup)="getLineNumber()" (keyup)="getLineNumber(this)"></textarea> -->
-<textarea class="toggle" #textSource wrap="off" (keydown)="onTextChange()"></textarea>
+<div class="main">
+  <div class="center-block">
+    <span id="textDisplay" #textDisplay style="position: fixed; top:-200px;">{{source}}</span>
+    <!-- <textarea #textSource wrap="on" (keydown)="onTextChange()" (mouseup)="getLineNumber()" (keyup)="getLineNumber(this)"></textarea> -->
+    <textarea class="toggle" #textSource wrap="off" (keydown)="onTextChange()" (change)="onTextChange()"></textarea>
+  </div>
+</div>

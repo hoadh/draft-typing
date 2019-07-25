@@ -1,0 +1,37 @@
+#zen-mode-buttons {
+  position: fixed;
+  top: 0;
+  right: 15px;
+  display: inline-block;
+  padding: 7px 5px 8px 9px;
+  border-top: 0;
+  text-shadow: white 0 1px 1px;
+  text-decoration: none;
+  font: normal 12px 'Helvetica Neue', Arial, Helvetica;
+  white-space: nowrap;
+  -webkit-transition: top ease-out 100ms;
+  -moz-transition: top ease-out 100ms;
+  -o-transition: top ease-out 100ms;
+  transition: top ease-out 100ms;
+}
+
+.round-button {
+  font-size: 20px;
+  border-radius: 50%;
+  border: 1px solid grey;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+  background: gainsboro;
+  opacity: 0.3;
+}
+
+.round-button:hover {
+  opacity: 0.5;
+}
+
+.round-button:active {
+  opacity: 0.7;
+}

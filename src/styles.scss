@@ -1,15 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
-
 html, body {
   height: 100%;
 }
 
-html {
-  display: table;
-  margin: auto;
-}
-
-body {
-  display: table-cell;
-  vertical-align: middle;
+.night-mode {
+  background: #00151f;
+  color: #fff;
 }
