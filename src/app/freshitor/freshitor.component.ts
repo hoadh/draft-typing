@@ -19,7 +19,8 @@ export class FreshitorComponent implements OnInit {
 
   onTextChange() {
     const textArea = this.textElement.nativeElement;
-    this.autosize(textArea);
+    const textDisplay = this.textDisplay.nativeElement;
+    this.autosize(textArea, textDisplay);
 
     const source = textArea.value;
     console.log('lineNumber', this.getLineNumber(textArea));
@@ -31,20 +32,37 @@ export class FreshitorComponent implements OnInit {
     this.source = maxLengthText;
   }
 
-  autosize(textArea) {
-
-    // this.source = textArea.value;
+  autosize(textArea, textDisplay) {
 
     if (textArea.scrollHeight >= window.innerHeight - 30) {
       return;
     }
 
-    console.log('autosize()', textArea);
+    let width = 0;
+
+    if (textDisplay) {
+      width = textDisplay.offsetWidth + 100;
+      console.log('width', width);
+    }
+
+    // reset min-width
+    if (width < 300) {
+      width = 300;
+    }
+
+    // reset max-width
+    if (width >= window.innerWidth - 30) {
+      width = window.innerWidth - 30;
+    }
+
+    // console.log('autosize()', textArea);
     setTimeout(() => {
       textArea.style.cssText = 'height:auto; padding:0';
       // for box-sizing other than "content-box" use:
       // el.style.cssText = '-moz-box-sizing:content-box';
-      textArea.style.cssText = 'height:' + textArea.scrollHeight + 'px';
+      const cssText = 'height:' + textArea.scrollHeight + 'px; width:' + width + 'px;';
+      console.log('cssText', cssText);
+      textArea.style.cssText = cssText;
     }, 0);
   }
 
