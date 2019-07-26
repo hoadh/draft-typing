@@ -1,5 +1,6 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Inject } from '@angular/core';
 import { GlobalService } from './global.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,12 @@ import { GlobalService } from './global.service';
 export class AppComponent implements OnInit {
   title = 'Freshitor';
   key: string;
+  elem;
 
-  constructor(private global: GlobalService) { }
+  constructor(
+    private global: GlobalService,
+    @Inject(DOCUMENT) private document: any,
+  ) { }
 
   ngOnInit() {
     this.global.getNightModeSubject().subscribe(isNightMode => {
@@ -29,6 +34,15 @@ export class AppComponent implements OnInit {
         }
       }
     }) ;
+
+    this.elem = document.documentElement;
+    this.global.getFullscreenSubject().subscribe( isFullscreen => {
+      if (isFullscreen) {
+        this.openFullscreen();
+      } else {
+        this.closeFullscreen();
+      }
+    });
   }
 
   getAllToggleElements() {
@@ -45,6 +59,11 @@ export class AppComponent implements OnInit {
       this.toggleNightMode();
     }
     console.log('handleKeyboardEvent', isNightModeCommand, event.key);
+
+    const isFullscreenCommand = this.getMultiKeys(event, 'Control', 'x');
+    if (isFullscreenCommand) {
+      this.global.toggleFullscreen();
+    }
   }
 
   getMultiKeys(event: KeyboardEvent, modifier: string, keyCode: string) {
@@ -66,5 +85,36 @@ export class AppComponent implements OnInit {
 
   toggleNightMode() {
     this.global.toggleNightMode();
+  }
+
+  openFullscreen() {
+    if (this.elem.requestFullscreen) {
+      this.elem.requestFullscreen();
+    } else if (this.elem.mozRequestFullScreen) {
+      /* Firefox */
+      this.elem.mozRequestFullScreen();
+    } else if (this.elem.webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.elem.webkitRequestFullscreen();
+    } else if (this.elem.msRequestFullscreen) {
+      /* IE/Edge */
+      this.elem.msRequestFullscreen();
+    }
+  }
+
+  /* Close fullscreen */
+  closeFullscreen() {
+    if (this.document.exitFullscreen) {
+      this.document.exitFullscreen();
+    } else if (this.document.mozCancelFullScreen) {
+      /* Firefox */
+      this.document.mozCancelFullScreen();
+    } else if (this.document.webkitExitFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.document.webkitExitFullscreen();
+    } else if (this.document.msExitFullscreen) {
+      /* IE/Edge */
+      this.document.msExitFullscreen();
+    }
   }
 }
