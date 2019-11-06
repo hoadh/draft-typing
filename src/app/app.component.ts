@@ -8,7 +8,7 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Freshitor';
+  title = 'Draft';
   key: string;
   elem;
 
